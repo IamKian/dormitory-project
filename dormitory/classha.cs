@@ -3,7 +3,7 @@
     public int DormitoryId { get; set; }
     public string Name { get; set; }
     public string Address { get; set; }
-    public int Capacity { get; set; }
+    public double Capacity { get; set; }
 
     public List<Block> Blocks { get; set; } = new();
     public List<Student> Students { get; set; } = new();
