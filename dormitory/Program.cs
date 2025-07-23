@@ -10,7 +10,7 @@ class Program
         if (System.IO.File.Exists("Dormitory.db"))
         {
             System.IO.File.Delete("Dormitory.db");
-            //Console.WriteLine(" Old database file deleted.");
+            Console.WriteLine(" Old database file deleted.");
         }
 
         using (var ctx = new DormitoryContext())
@@ -40,6 +40,8 @@ class Program
             Console.WriteLine("19. Show Full Student Info");
             Console.WriteLine("20. Move Student");
             Console.WriteLine("21. Transfer Tool");
+            Console.WriteLine("22. ShowBrokenTools");
+            Console.WriteLine("23. Show Available Rooms");
             Console.WriteLine("0. Exit");
             Console.Write("--> Your choice: ");
             var choice = Console.ReadLine();
@@ -116,8 +118,10 @@ class Program
                 case "21":
                     TransferTool();
                     break;
-
-
+                case "22":
+                    ShowBrokenTools();
+                    break;
+                case "23": ShowAvailableRooms(); break;
                 case "0": return;
 
                 default:
@@ -138,8 +142,26 @@ class Program
             Console.WriteLine(" Invalid capacity");
             return;
         }
+        using (var context6 = new DormitoryContext())
+        {
+            bool dormitoryExists = context6.Dormitories.Any(d =>
+              d.Name.ToLower() == name.ToLower() &&
+              d.Address.ToLower() == address.ToLower());
+
+            if (dormitoryExists)
+            {
+                Console.WriteLine($"A dormitory with name '{name}' and address '{address}' already exists.");
+                return;
+            }
+        }
+           
 
         using var context = new DormitoryContext();
+        if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(address))
+        {
+            Console.WriteLine(" Name and Address are required");
+            return;
+        }
         var dormitory = new Dormitory { Name = name, Address = address, Capacity = capacity };
         context.Dormitories.Add(dormitory);
         context.SaveChanges();
@@ -154,17 +176,31 @@ class Program
         string dormitoryName = Console.ReadLine()?.Trim();
 
         using var context = new DormitoryContext();
-        bool blockExists = dormitory.Blocks.Any(b => b.Name.ToLower() == blockName.ToLower());
-        if (blockExists)
+
+
+
+        var dormitory = context.Dormitories
+        .Include(d => d.Blocks)
+        .FirstOrDefault(d => d.Name.ToLower() == dormitoryName.ToLower());
+
+        if (dormitory == null)
         {
-            Console.WriteLine($" Error: Block name '{blockName}' already exists in dormitory '{dormitory.Name}'. Each dormitory can only have one block with this name.");
+            Console.WriteLine("Dormitory not found");
             return;
         }
 
-        var dormitory = context.Dormitories.FirstOrDefault(d => d.Name.ToLower() == dormitoryName.ToLower());
-        if (dormitory == null)
+        bool blockExists = dormitory.Blocks.Any(b => b.Name.ToLower() == blockName.ToLower());
+
+        if (!blockExists)
         {
-            Console.WriteLine(" Dormitory not found");
+            blockExists = context.Blocks.Any(b =>
+                b.DormitoryId == dormitory.DormitoryId &&
+                b.Name.ToLower() == blockName.ToLower());
+        }
+
+        if (blockExists)
+        {
+            Console.WriteLine($"Block name '{blockName}' already exists in dormitory '{dormitory.Name}'. Each dormitory can only have one block with this name.");
             return;
         }
 
@@ -191,11 +227,21 @@ class Program
             return;
         }
         bool roomExists = block.Rooms.Any(r => r.Number.ToLower() == roomNumber.ToLower());
+
+        if (!roomExists)
+        {
+            roomExists = context.Rooms.Any(r =>
+                r.BlockId == block.BlockId &&
+                r.Number.ToLower() == roomNumber.ToLower());
+        }
+
         if (roomExists)
         {
-            Console.WriteLine($" Room number '{roomNumber}' already exists in block '{block.Name}'. Each block can only have one room with a  number.");
+            Console.WriteLine($"Room number '{roomNumber}' already exists in block '{block.Name}'. Each block can only have one room with this number.");
             return;
         }
+
+
 
         var room = new Room { Number = roomNumber, BlockId = block.BlockId };
         context.Rooms.Add(room);
@@ -453,7 +499,7 @@ class Program
         Console.WriteLine("\n Dormitories:");
         foreach (var d in dorms)
         {
-            Console.WriteLine($" ID: {d.DormitoryId}, Name: {d.Name}, Address: {d.Address}, Capacity: {d.Capacity}");
+            Console.WriteLine($" ID: {d.DormitoryId}, Name: {d.Name}, Address: {d.Address}, Capacity: {d.Capacity} , supervisor: {d.Supervisors}");
         }
     }
     static void ShowBlocksInDormitory()
@@ -685,5 +731,82 @@ class Program
 
         Console.WriteLine($"Tool {tool.PartNumber} ({tool.Type}) transferred successfully to {newOwner.Name}");
     }
+    static void ShowBrokenTools()
+    {
+        using var context = new DormitoryContext();
+        var brokenTools = context.Tools
+            .Include(t => t.Room)
+                .ThenInclude(r => r.Block)
+                    .ThenInclude(b => b.Dormitory)
+            .Include(t => t.Student)
+            .Where(t => t.Status == Status.Defective || t.Status == Status.UnderRepair)
+            .ToList();
+
+        if (!brokenTools.Any())
+        {
+            Console.WriteLine("No broken or under repair tools found.");
+            return;
+        }
+
+        Console.WriteLine("\nList of broken and under repair tools:");
+
+        foreach (var tool in brokenTools)
+        {
+            Console.WriteLine($"Type: {tool.Type} | Part Number: {tool.PartNumber} | Status: {tool.Status}");
+            Console.WriteLine($"Location: Dormitory {tool.Room.Block.Dormitory.Name}, Block {tool.Room.Block.Name}, Room {tool.Room.Number}");
+            Console.WriteLine($"Owner: {tool.Student?.Name ?? "No owner"}");
+        }
+    }
+
+    static void ShowAvailableRooms()
+    {
+        Console.WriteLine("Showing available rooms with space:");
+
+        using var context = new DormitoryContext();
+
+        var availableRooms = context.Rooms
+            .Include(r => r.Block)
+            .ThenInclude(b => b.Dormitory)
+            .ToList()
+            .Select(r => new
+            {
+                Room = r,
+                StudentCount = context.Students.Count(s => s.RoomId == r.RoomId),
+                AvailableSpace = 6 - context.Students.Count(s => s.RoomId == r.RoomId)
+            })
+            .Where(r => r.AvailableSpace > 0)
+            .OrderBy(r => r.Room.Block.Dormitory.Name)
+            .ThenBy(r => r.Room.Block.Name)
+            .ThenBy(r => r.Room.Number)
+            .ToList();
+
+        if (!availableRooms.Any())
+        {
+            Console.WriteLine("No rooms with available space found.");
+            return;
+        }
+
+        string currentDormitory = "";
+        string currentBlock = "";
+
+        foreach (var room in availableRooms)
+        {
+            if (room.Room.Block.Dormitory.Name != currentDormitory)
+            {
+                currentDormitory = room.Room.Block.Dormitory.Name;
+                Console.WriteLine($"\nDormitory: {currentDormitory}");
+                currentBlock = "";
+            }
+
+            if (room.Room.Block.Name != currentBlock)
+            {
+                currentBlock = room.Room.Block.Name;
+                Console.WriteLine($"  Block: {currentBlock}");
+            }
+
+            Console.WriteLine($"    Room: {room.Room.Number}, Available Spaces: {room.AvailableSpace}");
+        }
+    }
+
 
 }
