@@ -1,0 +1,169 @@
+D:\codes\data test\data test\obj\Debug\net8.0\data test.csproj.AssemblyReference.cache
+D:\codes\data test\data test\obj\Debug\net8.0\data test.GeneratedMSBuildEditorConfig.editorconfig
+D:\codes\data test\data test\obj\Debug\net8.0\data test.AssemblyInfoInputs.cache
+D:\codes\data test\data test\obj\Debug\net8.0\data test.AssemblyInfo.cs
+D:\codes\data test\data test\obj\Debug\net8.0\data test.csproj.CoreCompileInputs.cache
+D:\codes\data test\data test\bin\Debug\net8.0\data test.exe
+D:\codes\data test\data test\bin\Debug\net8.0\data test.deps.json
+D:\codes\data test\data test\bin\Debug\net8.0\data test.runtimeconfig.json
+D:\codes\data test\data test\bin\Debug\net8.0\data test.dll
+D:\codes\data test\data test\bin\Debug\net8.0\data test.pdb
+D:\codes\data test\data test\bin\Debug\net8.0\EntityFramework.SqlServer.dll
+D:\codes\data test\data test\bin\Debug\net8.0\EntityFramework.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Humanizer.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Bcl.AsyncInterfaces.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Build.Locator.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.CodeAnalysis.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.CodeAnalysis.Workspaces.MSBuild.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Data.Sqlite.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Abstractions.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Design.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Relational.Design.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Sqlite.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.EntityFrameworkCore.Sqlite.Design.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.Caching.Abstractions.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.Caching.Memory.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.DependencyModel.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.Logging.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.Logging.Abstractions.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.Options.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Extensions.Primitives.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\codes\data test\data test\bin\Debug\net8.0\Mono.TextTemplating.dll
+D:\codes\data test\data test\bin\Debug\net8.0\SQLitePCLRaw.batteries_v2.dll
+D:\codes\data test\data test\bin\Debug\net8.0\SQLitePCLRaw.core.dll
+D:\codes\data test\data test\bin\Debug\net8.0\SQLitePCLRaw.provider.e_sqlite3.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Data.SQLite.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.CodeDom.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Composition.AttributedModel.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Composition.Convention.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Composition.Hosting.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Composition.Runtime.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Composition.TypedParts.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Data.SqlClient.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Data.SQLite.EF6.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Diagnostics.DiagnosticSource.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Drawing.Common.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.IO.Pipelines.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Security.Permissions.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Text.Encodings.Web.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Text.Json.dll
+D:\codes\data test\data test\bin\Debug\net8.0\System.Windows.Extensions.dll
+D:\codes\data test\data test\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\cs\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\de\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\es\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\fr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\it\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ja\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ko\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pl\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\ru\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.BuildHost.resources.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-arm64\native\sni.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-x64\native\sni.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-x86\native\sni.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\browser-wasm\nativeassets\net8.0\e_sqlite3.a
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-arm\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-arm64\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-armel\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-mips64\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-musl-arm\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-musl-arm64\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-musl-s390x\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-musl-x64\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-ppc64le\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-s390x\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-x64\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-x86\native\libe_sqlite3.so
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\maccatalyst-arm64\native\libe_sqlite3.dylib
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\maccatalyst-x64\native\libe_sqlite3.dylib
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\osx-arm64\native\libe_sqlite3.dylib
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\osx-x64\native\libe_sqlite3.dylib
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-arm\native\e_sqlite3.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-arm64\native\e_sqlite3.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-x64\native\e_sqlite3.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-x86\native\e_sqlite3.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\linux-x64\native\SQLite.Interop.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\osx-x64\native\SQLite.Interop.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-x64\native\SQLite.Interop.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win-x86\native\SQLite.Interop.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\unix\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win\lib\netcoreapp2.1\System.Data.SqlClient.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\unix\lib\net6.0\System.Drawing.Common.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\browser\lib\net8.0\System.Text.Encodings.Web.dll
+D:\codes\data test\data test\bin\Debug\net8.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+D:\codes\data test\data test\obj\Debug\net8.0\data test.csproj.Up2Date
+D:\codes\data test\data test\obj\Debug\net8.0\data test.dll
+D:\codes\data test\data test\obj\Debug\net8.0\refint\data test.dll
+D:\codes\data test\data test\obj\Debug\net8.0\data test.pdb
+D:\codes\data test\data test\obj\Debug\net8.0\data test.genruntimeconfig.cache
+D:\codes\data test\data test\obj\Debug\net8.0\ref\data test.dll
