@@ -36,6 +36,10 @@ class Program
             Console.WriteLine("15. Delete Student");
             Console.WriteLine("16. Delete Tool");
             Console.WriteLine("17. Delete Supervisor");
+            Console.WriteLine("18. Edit Student");
+            Console.WriteLine("19. Show Full Student Info");
+            Console.WriteLine("20. Move Student");
+            Console.WriteLine("21. Transfer Tool");
             Console.WriteLine("0. Exit");
             Console.Write("--> Your choice: ");
             var choice = Console.ReadLine();
@@ -87,10 +91,32 @@ class Program
                     break;
 
                 case "17":
-                    Console.Write("Supervisor Phone Number to delete: ");
-                    var supervisorPhone = Console.ReadLine()?.Trim();
-                    DeleteOperations.DeleteSupervisor(context, supervisorPhone);
+                    Console.Write("Supervisor Name to delete: ");
+                    var supervisorName = Console.ReadLine()?.Trim();
+                    DeleteOperations.DeleteSupervisor(context, supervisorName);
                     break;
+                case "18":
+                    {
+                        Console.Write("Student name: ");
+                        string studentName = Console.ReadLine()?.Trim();
+                        EditStudent(context, studentName);
+                        break;
+                    }
+                case "19":
+                    {
+                        Console.Write("Student name: ");
+                        string studentName2 = Console.ReadLine()?.Trim();
+                        ShowFullStudentInfo(context, studentName2);
+                        break;
+                    }
+                case "20":
+                    MoveStudent();
+                    break;
+
+                case "21":
+                    TransferTool();
+                    break;
+
 
                 case "0": return;
 
@@ -128,6 +154,12 @@ class Program
         string dormitoryName = Console.ReadLine()?.Trim();
 
         using var context = new DormitoryContext();
+        bool blockExists = dormitory.Blocks.Any(b => b.Name.ToLower() == blockName.ToLower());
+        if (blockExists)
+        {
+            Console.WriteLine($" Error: Block name '{blockName}' already exists in dormitory '{dormitory.Name}'. Each dormitory can only have one block with this name.");
+            return;
+        }
 
         var dormitory = context.Dormitories.FirstOrDefault(d => d.Name.ToLower() == dormitoryName.ToLower());
         if (dormitory == null)
@@ -156,6 +188,12 @@ class Program
         if (block == null)
         {
             Console.WriteLine(" Block not found ");
+            return;
+        }
+        bool roomExists = block.Rooms.Any(r => r.Number.ToLower() == roomNumber.ToLower());
+        if (roomExists)
+        {
+            Console.WriteLine($" Room number '{roomNumber}' already exists in block '{block.Name}'. Each block can only have one room with a  number.");
             return;
         }
 
@@ -222,7 +260,12 @@ class Program
                 Console.WriteLine(" Room not found ");
                 return;
             }
-
+            int RoomCpacity = context.Students.Count(s => s.RoomId == room.RoomId);
+            if (RoomCpacity >= 6)
+            {
+                Console.WriteLine("  Room is at maximum capacity (6 students). Cannot add more students to this room.");
+                return;
+            }
             var student = new Student
             {
                 Name = name,
@@ -461,4 +504,186 @@ class Program
         foreach (var t in room.Tools)
             Console.WriteLine($"-> {t.Type} | PartNumber: {t.PartNumber} | Owner StudentId: {t.StudentId}");
     }
+    public static void EditStudent(DormitoryContext context, string studentName)
+    {
+        var student = context.Students.FirstOrDefault(s => s.Name == studentName);
+        if (student == null)
+        {
+            Console.WriteLine("Student not found.");
+            return;
+        }
+
+        Console.WriteLine("What do you want to edit?");
+        Console.WriteLine("1. Name");
+        Console.WriteLine("2. Phone Number");
+        Console.WriteLine("3. All Information");
+        Console.Write("--> Your choice: ");
+        string editChoice = Console.ReadLine();
+
+        if (editChoice == "1" || editChoice == "3")
+        {
+            Console.Write("New Name: ");
+            string newName = Console.ReadLine()?.Trim();
+            if (!string.IsNullOrEmpty(newName))
+            {
+                student.Name = newName;
+            }
+        }
+
+        if (editChoice == "2" || editChoice == "3")
+        {
+            Console.Write("New Phone Number: ");
+            string newPhone = Console.ReadLine()?.Trim();
+
+            bool phoneExists =
+                context.Students.Any(s => s.PhoneNumber == newPhone && s.StudentId != student.StudentId) ||
+                context.Supervisors.Any(s => s.PhoneNumber == newPhone);
+
+            if (phoneExists)
+            {
+                Console.WriteLine("This phone number is already registered.");
+                return;
+            }
+
+            if (!string.IsNullOrEmpty(newPhone))
+            {
+                student.PhoneNumber = newPhone;
+            }
+        }
+
+        context.SaveChanges();
+        Console.WriteLine("Student edited successfully.");
+    }
+    public static void ShowFullStudentInfo(DormitoryContext context, string studentName)
+    {
+        var student = context.Students
+            .Include(s => s.Room)
+                .ThenInclude(r => r.Block)
+                    .ThenInclude(b => b.Dormitory)
+            .Include(s => s.Tools)
+            .FirstOrDefault(s => s.Name == studentName);
+
+        if (student == null)
+        {
+            Console.WriteLine("Student not found.");
+            return;
+        }
+
+        Console.WriteLine($"Student Name: {student.Name}");
+        Console.WriteLine($"Student Number: {student.StudentNumber}");
+        Console.WriteLine($"National Code: {student.NationalCode}");
+        Console.WriteLine($"Phone Number: {student.PhoneNumber}");
+
+        if (student.Room != null)
+        {
+            Console.WriteLine($"Room Number: {student.Room.Number}");
+            if (student.Room.Block != null)
+            {
+                Console.WriteLine($"Block Name: {student.Room.Block.Name}");
+                if (student.Room.Block.Dormitory != null)
+                {
+                    Console.WriteLine($"Dormitory Name: {student.Room.Block.Dormitory.Name}");
+                    Console.WriteLine($"Dormitory Address: {student.Room.Block.Dormitory.Address}");
+                }
+            }
+        }
+
+        if (student.Tools != null && student.Tools.Any())
+        {
+            Console.WriteLine("Tools:");
+            foreach (var tool in student.Tools)
+            {
+                Console.WriteLine($"- Type: {tool.Type}, Part Number: {tool.PartNumber}, Status: {tool.Status}");
+            }
+        }
+        else
+        {
+            Console.WriteLine("No tools assigned.");
+        }
+    }
+    static void MoveStudent()
+    {
+        using var context = new DormitoryContext();
+
+        Console.Write("Enter Student Num or Name to move: ");
+        string studentIdOrName = Console.ReadLine()?.Trim();
+
+        var student = context.Students
+            .Include(s => s.Room)
+            .ThenInclude(r => r.Block)
+            .ThenInclude(b => b.Dormitory)
+            .FirstOrDefault(s => s.StudentNumber.ToString() == studentIdOrName || s.Name == studentIdOrName);
+
+        if (student == null)
+        {
+            Console.WriteLine("Student not found");
+            return;
+        }
+
+        Console.WriteLine($" location fely: Dormitory: {student.Room.Block.Dormitory.Name}, Block: {student.Room.Block.Name}, Room: {student.Room.Number}");
+
+        Console.Write("Enter new Room Number: ");
+        string newRoomNumber = Console.ReadLine()?.Trim();
+
+        var newRoom = context.Rooms
+            .Include(r => r.Block)
+            .ThenInclude(b => b.Dormitory)
+            .FirstOrDefault(r => r.Number == newRoomNumber);
+
+        if (newRoom == null)
+        {
+            Console.WriteLine("Room not found");
+            return;
+        }
+
+        student.RoomId = newRoom.RoomId;
+        context.SaveChanges();
+
+        Console.WriteLine($"Student {student.Name} moved successfully to Dormitory: {newRoom.Block.Dormitory.Name}, Block: {newRoom.Block.Name}, Room: {newRoom.Number}");
+    }
+    static void TransferTool()
+    {
+        using var context = new DormitoryContext();
+
+        Console.Write("Enter Tool Part Number: ");
+        string partNumber = Console.ReadLine()?.Trim();
+
+        var tool = context.Tools
+            .Include(t => t.Student)
+            .Include(t => t.Room)
+            .FirstOrDefault(t => t.PartNumber == partNumber);
+
+        if (tool == null)
+        {
+            Console.WriteLine("Tool not found");
+            return;
+        }
+
+        Console.WriteLine($"Tool Information: Type: {tool.Type}, Status: {tool.Status}");
+        Console.WriteLine($"Current Owner: {tool.Student?.Name ?? "No owner"}");
+
+        Console.Write("Enter New Owner's Name: ");
+        string newOwnerName = Console.ReadLine()?.Trim();
+
+        var newOwner = context.Students
+            .FirstOrDefault(s => s.Name.ToLower() == newOwnerName.ToLower() && s.RoomId == tool.RoomId);
+
+        if (newOwner == null)
+        {
+            Console.WriteLine("Student not found in this room");
+            return;
+        }
+
+        if (newOwner.StudentId == tool.StudentId)
+        {
+            Console.WriteLine("This student is already the owner of this tool");
+            return;
+        }
+
+        tool.StudentId = newOwner.StudentId;
+        context.SaveChanges();
+
+        Console.WriteLine($"Tool {tool.PartNumber} ({tool.Type}) transferred successfully to {newOwner.Name}");
+    }
+
 }
