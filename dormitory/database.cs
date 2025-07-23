@@ -17,29 +17,65 @@ public class DormitoryContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+
         modelBuilder.Entity<Dormitory>()
             .HasMany(d => d.Blocks)
-            .WithOne()
-            .HasForeignKey(b => b.DormitoryId);
+            .WithOne(b => b.Dormitory)
+            .HasForeignKey(b => b.DormitoryId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<Block>()
             .HasMany(b => b.Rooms)
-            .WithOne()
-            .HasForeignKey(r => r.BlockId);
+            .WithOne(r => r.Block)
+            .HasForeignKey(r => r.BlockId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<Room>()
             .HasMany(r => r.Tools)
-            .WithOne()
-            .HasForeignKey(t => t.RoomId);
+            .WithOne(t => t.Room)
+            .HasForeignKey(t => t.RoomId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<Room>()
             .HasMany(r => r.Students)
-            .WithOne()
-            .HasForeignKey(s => s.RoomId);
+            .WithOne(s => s.Room)
+            .HasForeignKey(s => s.RoomId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<Dormitory>()
             .HasMany(d => d.Students)
-            .WithOne()
-            .HasForeignKey(s => s.DormitoryId);
+            .WithOne(s => s.Dormitory)
+            .HasForeignKey(s => s.DormitoryId)
+            .OnDelete(DeleteBehavior.Cascade);
+
         modelBuilder.Entity<Dormitory>()
             .HasMany(d => d.Supervisors)
-            .WithOne()
-            .HasForeignKey(s => s.DormitoryId);
+            .WithOne(s => s.Dormitory)
+            .HasForeignKey(s => s.DormitoryId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<Block>()
+            .HasMany(b => b.Supervisors)
+            .WithOne(s => s.Block)
+            .HasForeignKey(s => s.BlockId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<Student>()
+            .HasIndex(s => s.NationalCode)
+            .IsUnique();
+
+        modelBuilder.Entity<Student>()
+            .HasIndex(s => s.PhoneNumber)
+            .IsUnique();
+
+        modelBuilder.Entity<Supervisor>()
+            .HasIndex(s => s.NationalCode)
+            .IsUnique();
+
+        modelBuilder.Entity<Supervisor>()
+            .HasIndex(s => s.PhoneNumber)
+            .IsUnique();
+
+        base.OnModelCreating(modelBuilder);
     }
 }
