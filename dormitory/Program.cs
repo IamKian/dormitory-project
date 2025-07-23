@@ -12,9 +12,9 @@ class Program
         Console.Write("Address: ");
         string address = Console.ReadLine()?.Trim();
         Console.Write("Capacity: ");
-        if (!int.TryParse(Console.ReadLine(), out int capacity))
+        if (!double.TryParse(Console.ReadLine(), out double capacity))
         {
-            Console.WriteLine("❌ Invalid capacity.");
+            Console.WriteLine(" Invalid capacity.");
             return;
         }
 
@@ -24,3 +24,4 @@ class Program
         context.SaveChanges();
         Console.WriteLine("Dormitory added.");
     }
+}
