@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\DOR CO\\Desktop\\data test\\data test\\data test.csproj",
+      "projectUniqueName": "C:\\Users\\DOR CO\\Desktop\\data test\\data test\\data test\\data test.csproj",
       "projectName": "data test",
-      "projectPath": "C:\\Users\\DOR CO\\Desktop\\data test\\data test\\data test.csproj",
+      "projectPath": "C:\\Users\\DOR CO\\Desktop\\data test\\data test\\data test\\data test.csproj",
       "packagesPath": "C:\\Users\\DOR CO\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\DOR CO\\Desktop\\data test\\data test\\obj\\",
+      "outputPath": "C:\\Users\\DOR CO\\Desktop\\data test\\data test\\data test\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "F:\\Application\\Microsoft Visual Studio\\Shared\\NuGetPackages"

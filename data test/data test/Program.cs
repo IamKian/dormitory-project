@@ -102,6 +102,31 @@ class Program
     }
 
 
+
+    static void AddBlockFromUser()
+    {
+        Console.Write("Block Name: ");
+        string blockName = Console.ReadLine()?.Trim();
+
+        Console.Write("Dormitory Name: ");
+        string dormitoryName = Console.ReadLine()?.Trim();
+
+        using var context = new DormitoryContext();
+
+        var dormitory = context.Dormitories.FirstOrDefault(d => d.Name.ToLower() == dormitoryName.ToLower());
+        if (dormitory == null)
+        {
+            Console.WriteLine("❌ Dormitory not found.");
+            return;
+        }
+
+        var block = new Block { Name = blockName, DormitoryId = dormitory.DormitoryId };
+        context.Blocks.Add(block);
+        context.SaveChanges();
+
+        Console.WriteLine("Block added.");
+    }
+
     static void AddDormitoryFromUser()
     {
         Console.Write("Dormitory name: ");
