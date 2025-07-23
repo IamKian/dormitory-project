@@ -77,7 +77,6 @@ public class Student
 
     public int RoomId { get; set; }
     public Room Room { get; set; }
-    public virtual ICollection<Tool> Tools { get; set; } = new List<Tool>();
 
 }
 
