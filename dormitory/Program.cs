@@ -15,10 +15,11 @@ class Program
 
         using (var ctx = new DormitoryContext())
         {
-            ctx.Database.Migrate();
-            Console.WriteLine($"Database path: {ctx.Database.GetDbConnection().DataSource}");
-        }
+            ctx.Database.EnsureCreated();
             
+        }
+
+
 
 
         ShowMenu();
@@ -108,7 +109,7 @@ class Program
                 case "29": ShowBlockSupervisors(); break;
                 case "30": ShowDormitorySupervisors(); break;
                 default:
-                    Console.WriteLine("Invalid choice. Type 'help' to see available commands.");
+                    Console.WriteLine("Invalid choice. Type 'help' to see menu.");
                     break;
             }
         }
@@ -117,7 +118,6 @@ class Program
     static void ShowMenu()
     {
         Console.Clear();
-        Console.WriteLine("\n Dormitory Management System \n");
         Console.WriteLine("Main Menu:");
         Console.WriteLine("1. Add Dormitory");
         Console.WriteLine("2. Add Block");
@@ -528,10 +528,29 @@ class Program
         }
     }
 
+    //static void ShowDormitories()
+    //{
+    //    using var context = new DormitoryContext();
+    //    var dorms = context.Dormitories.ToList();
+
+    //    if (!dorms.Any())
+    //    {
+    //        Console.WriteLine(" No dormitories found");
+    //        return;
+    //    }
+
+    //    Console.WriteLine("\n Dormitories:");
+    //    foreach (var d in dorms)
+    //    {
+    //        Console.WriteLine($" ID: {d.DormitoryId}, Name: {d.Name}, Address: {d.Address}, Capacity: {d.Capacity} , supervisor: {d.Supervisors}");
+    //    }
+    //}
     static void ShowDormitories()
     {
         using var context = new DormitoryContext();
-        var dorms = context.Dormitories.ToList();
+        var dorms = context.Dormitories
+            .Include(d => d.Supervisors)  
+            .ToList();
 
         if (!dorms.Any())
         {
@@ -542,21 +561,79 @@ class Program
         Console.WriteLine("\n Dormitories:");
         foreach (var d in dorms)
         {
-            Console.WriteLine($" ID: {d.DormitoryId}, Name: {d.Name}, Address: {d.Address}, Capacity: {d.Capacity} , supervisor: {d.Supervisors}");
+            Console.WriteLine($" ID: {d.DormitoryId}, Name: {d.Name}, Address: {d.Address}, Capacity: {d.Capacity}");
+
+            if (d.Supervisors != null && d.Supervisors.Any())
+            {
+                Console.WriteLine("   Supervisors:");
+                foreach (var supervisor in d.Supervisors)
+                {
+                    Console.WriteLine($"     {supervisor.Name} (Phone: {supervisor.PhoneNumber})");
+                }
+            }
+            else
+            {
+                Console.WriteLine("   No supervisors assigned");
+            }
         }
     }
+
+    //static void ShowBlocksInDormitory()
+    //{
+    //    Console.Write("Dormitory Name: ");
+    //    var name = Console.ReadLine()?.Trim();
+    //    using var ctx = new DormitoryContext();
+    //    var dorm = ctx.Dormitories.Include(d => d.Blocks).FirstOrDefault(d => d.Name.ToLower() == name.ToLower());
+    //    if (dorm == null) { Console.WriteLine(" Dormitory not found."); return; }
+    //    Console.WriteLine($"\n Blocks in {dorm.Name}:");
+    //    if (!dorm.Blocks.Any()) { Console.WriteLine(" No blocks."); return; }
+    //    foreach (var b in dorm.Blocks)
+    //        Console.WriteLine($"-> {b.Name} (ID {b.BlockId})");
+    //}
     static void ShowBlocksInDormitory()
     {
         Console.Write("Dormitory Name: ");
         var name = Console.ReadLine()?.Trim();
+
         using var ctx = new DormitoryContext();
-        var dorm = ctx.Dormitories.Include(d => d.Blocks).FirstOrDefault(d => d.Name.ToLower() == name.ToLower());
-        if (dorm == null) { Console.WriteLine(" Dormitory not found."); return; }
+        var dorm = ctx.Dormitories
+            .Include(d => d.Blocks)
+                .ThenInclude(b => b.Supervisors)
+            .FirstOrDefault(d => d.Name.ToLower() == name.ToLower());
+
+        if (dorm == null)
+        {
+            Console.WriteLine(" Dormitory not found.");
+            return;
+        }
+
         Console.WriteLine($"\n Blocks in {dorm.Name}:");
-        if (!dorm.Blocks.Any()) { Console.WriteLine(" No blocks."); return; }
+
+        if (!dorm.Blocks.Any())
+        {
+            Console.WriteLine(" No blocks.");
+            return;
+        }
+
         foreach (var b in dorm.Blocks)
+        {
             Console.WriteLine($"-> {b.Name} (ID {b.BlockId})");
+
+            if (b.Supervisors != null && b.Supervisors.Any())
+            {
+                Console.WriteLine("   Supervisors:");
+                foreach (var supervisor in b.Supervisors)
+                {
+                    Console.WriteLine($"   - {supervisor.Name} (Phone: {supervisor.PhoneNumber})");
+                }
+            }
+            else
+            {
+                Console.WriteLine("   No supervisors assigned");
+            }
+        }
     }
+
     static void ShowRoomsInBlock()
     {
         Console.Write("Block Name: ");
@@ -1666,7 +1743,6 @@ class Program
             {
                 Console.WriteLine($"\nDormitory: {dormitory.Name} ");
 
-                // Show dormitory-level supervisors
                 var dormitorySupervisors = dormitory.Supervisors.ToList();
                 if (dormitorySupervisors.Any())
                 {
@@ -1707,7 +1783,6 @@ class Program
                     Console.WriteLine("\nNo block-level supervisors in this dormitory.");
                 }
 
-                Console.WriteLine("\n" + new string('=', 40));
             }
         }
     }
