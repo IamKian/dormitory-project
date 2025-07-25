@@ -12,15 +12,13 @@ class Program
         //    System.IO.File.Delete("Dormitory.db");
         //    Console.WriteLine(" Old database file deleted.");
         //}
-
+        Console.WriteLine("Welcome To Dormitory Mangment System");
+        Console.WriteLine("Please Wait a Seconde...");
+        
         using (var ctx = new DormitoryContext())
         {
             ctx.Database.EnsureCreated();
-            
         }
-
-
-
 
         ShowMenu();
 
@@ -113,6 +111,9 @@ class Program
                     break;
             }
         }
+                 Console.WriteLine("tashakor");
+        Console.ReadKey();
+
     }
 
     static void ShowMenu()
@@ -527,24 +528,6 @@ class Program
             }
         }
     }
-
-    //static void ShowDormitories()
-    //{
-    //    using var context = new DormitoryContext();
-    //    var dorms = context.Dormitories.ToList();
-
-    //    if (!dorms.Any())
-    //    {
-    //        Console.WriteLine(" No dormitories found");
-    //        return;
-    //    }
-
-    //    Console.WriteLine("\n Dormitories:");
-    //    foreach (var d in dorms)
-    //    {
-    //        Console.WriteLine($" ID: {d.DormitoryId}, Name: {d.Name}, Address: {d.Address}, Capacity: {d.Capacity} , supervisor: {d.Supervisors}");
-    //    }
-    //}
     static void ShowDormitories()
     {
         using var context = new DormitoryContext();
@@ -577,19 +560,6 @@ class Program
             }
         }
     }
-
-    //static void ShowBlocksInDormitory()
-    //{
-    //    Console.Write("Dormitory Name: ");
-    //    var name = Console.ReadLine()?.Trim();
-    //    using var ctx = new DormitoryContext();
-    //    var dorm = ctx.Dormitories.Include(d => d.Blocks).FirstOrDefault(d => d.Name.ToLower() == name.ToLower());
-    //    if (dorm == null) { Console.WriteLine(" Dormitory not found."); return; }
-    //    Console.WriteLine($"\n Blocks in {dorm.Name}:");
-    //    if (!dorm.Blocks.Any()) { Console.WriteLine(" No blocks."); return; }
-    //    foreach (var b in dorm.Blocks)
-    //        Console.WriteLine($"-> {b.Name} (ID {b.BlockId})");
-    //}
     static void ShowBlocksInDormitory()
     {
         Console.Write("Dormitory Name: ");
@@ -617,7 +587,7 @@ class Program
 
         foreach (var b in dorm.Blocks)
         {
-            Console.WriteLine($"-> {b.Name} (ID {b.BlockId})");
+            Console.WriteLine($"->  {b.BlockId}.  {b.Name} ");
 
             if (b.Supervisors != null && b.Supervisors.Any())
             {
@@ -634,18 +604,44 @@ class Program
         }
     }
 
+    
     static void ShowRoomsInBlock()
     {
         Console.Write("Block Name: ");
         var name = Console.ReadLine()?.Trim();
+
         using var ctx = new DormitoryContext();
-        var block = ctx.Blocks.Include(b => b.Rooms).FirstOrDefault(b => b.Name.ToLower() == name.ToLower());
-        if (block == null) { Console.WriteLine(" Block not found"); return; }
+        var block = ctx.Blocks
+            .Include(b => b.Rooms)
+                .ThenInclude(r => r.Students)
+            .Include(b => b.Rooms)
+                .ThenInclude(r => r.Tools)
+            .FirstOrDefault(b => b.Name.ToLower() == name.ToLower());
+
+        if (block == null)
+        {
+            Console.WriteLine(" Block not found");
+            return;
+        }
+
         Console.WriteLine($"\n Rooms in Block {block.Name}:");
-        if (!block.Rooms.Any()) { Console.WriteLine(" No rooms"); return; }
+
+        if (!block.Rooms.Any())
+        {
+            Console.WriteLine(" No rooms");
+            return;
+        }
+
         foreach (var r in block.Rooms)
-            Console.WriteLine($"-> {r.Number} (ID {r.RoomId})");
+        {
+            Console.WriteLine($"->  {r.RoomId}.  {r.Number}  ");
+
+            int studentCount = r.Students?.Count ?? 0;
+            int toolCount = r.Tools?.Count ?? 0;
+            Console.WriteLine($"   Students: {studentCount}, Tools: {toolCount}");
+        }
     }
+
     static void ShowStudentsInRoom()
     {
         Console.Write("Room Number: ");
